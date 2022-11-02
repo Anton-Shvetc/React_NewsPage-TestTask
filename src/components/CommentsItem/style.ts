@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import styled from "styled-components";
 
 export const CommentText = styled.div({
@@ -32,3 +33,12 @@ export const CommentsItemStyle = styled.div<{ level: 1 | 2 }>(
     };
   }
 );
+
+export const AnswerButton = styled(Button)({
+  display: "flex",
+  alignItems: "center",
+  borderRadius: 20,
+  marginTop: 10,
+  background: "var(--color-primary)",
+  color: "var(--color-white)",
+});

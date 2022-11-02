@@ -5,10 +5,8 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { fetchComments } from "../../redux/slices/commentsSlice";
 import { fetchNewsById } from "../../redux/slices/newsSlice";
 import { Comments } from "../Comments/Comments";
-import { Spin } from "antd";
 import {
   CalendarOutlined,
-  LoadingOutlined,
   StarOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -21,16 +19,13 @@ import {
   NewsDetailTitle,
   NewsDetailWrapper,
 } from "./style";
-import { Loader } from "../Lodader/Loader";
+import { Loader } from "../Loader/Loader";
 
 export const NewsCard: React.FC = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();
-
   const { newsById, isLoading, params } = useAppSelector((state) => state.news);
   const { comments } = useAppSelector((state) => state.comments);
   const dispatch = useAppDispatch();
-
-
 
   const date = new Date(newsById.time * 1000);
   const getNewsById = (): void => {

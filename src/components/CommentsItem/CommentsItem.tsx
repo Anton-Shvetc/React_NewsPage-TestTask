@@ -5,7 +5,12 @@ import {
 } from "../../services/interfaces/interfaces";
 import { NewsApi } from "../../services/api";
 import { ShortText } from "../ShortText/ShortText";
-import { CommentsItemStyle, CommentText, UserInfo } from "./style";
+import {
+  AnswerButton,
+  CommentsItemStyle,
+  CommentText,
+  UserInfo,
+} from "./style";
 
 export const CommentsItem: React.FC<NewsCommentsItemProps> = ({
   comment,
@@ -36,7 +41,9 @@ export const CommentsItem: React.FC<NewsCommentsItemProps> = ({
       <CommentText>
         <ShortText comment={comment} />
         {showChildComments && comment.kids !== undefined && (
-          <button onClick={handleFetchCommentKids}>Ответ...</button>
+          <AnswerButton onClick={handleFetchCommentKids}>
+            Answer...
+          </AnswerButton>
         )}
       </CommentText>
 

@@ -9,7 +9,7 @@ import {
   CommentsTitle,
   RefreshButton,
 } from "./style";
-import { Loader } from "../Lodader/Loader";
+import { Loader } from "../Loader/Loader";
 
 export const Comments: React.FC<NewsCommentsProps> = ({
   news,

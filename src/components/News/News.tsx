@@ -4,7 +4,7 @@ import { NewsInterface, NewsProps } from "../../services/interfaces/interfaces";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { RetweetOutlined } from "@ant-design/icons";
 import { NewsItems, NewsStyle, RefreshButton } from "./style";
-import { Loader } from "../Lodader/Loader";
+import { Loader } from "../Loader/Loader";
 
 export const News: React.FC<NewsProps> = ({ getNews }): JSX.Element => {
   const { news, isLoading } = useAppSelector((state) => state.news);
