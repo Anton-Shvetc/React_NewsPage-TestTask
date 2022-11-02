@@ -1,6 +1,22 @@
+import axios from "axios";
+import { NewsInterface } from "./interfaces/interfaces";
+
+
 export const baseUrl = "https://hacker-news.firebaseio.com/v0/";
 export const newStoriesUrl = `${baseUrl}showstories.json`;
 export const storyUrl = `${baseUrl}item/`
+
+
+//import { baseUrl } from "../index";
+// import { NewsInterface } from "../../interfaces/news.interface";
+
+// export const baseUrl = "https://hacker-news.firebaseio.com/v0";
+
+const instance = axios.create({
+  baseURL: baseUrl,
+});
+
+
 
 
 export const getStoryIds = async() => {
@@ -28,3 +44,20 @@ export const getStory= async(storyId : number | string) => {
 
    return result;
  };
+
+ export class NewsApi {
+   static async getNews(): Promise<number[]> {
+     const response = await instance
+       .get("/topstories.json")
+       .then(({ data }) => data)
+       .catch((err) => console.warn(err));
+     return response;
+   }
+   static async getNewsById(newsId: number): Promise<NewsInterface> {
+     const response = await instance
+       .get(`/item/${newsId}.json`)
+       .then(({ data }) => data)
+       .catch((err) => console.warn(err));
+     return response;
+   }
+ }

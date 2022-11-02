@@ -1,26 +1,28 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { Story } from "../components/Story";
-import { getStoryIds, getStory } from "../services/api";
+import { useAppDispatch } from "../hooks/useAppDispatch";
+import { fetchNews } from "../redux/slices/newsSlice";
+import { useAppSelector } from "../hooks/useAppSelector";
+import { News } from "../components/News/News";
 
-export function Home() {
-  const [data, setData] = useState<any>([]);
+export const Home: React.FC = (): JSX.Element => {
+  const { news } = useAppSelector((state) => state.news);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    getStoryIds().then((res: number[]) =>{
-      setData(res)}
-    );
+  const getNews = (): void => {
+    dispatch(fetchNews());
+  };
+
+  React.useEffect(() => {
+    if (news.length === 0) {
+      getNews();
+    }
+    const interval = setInterval(() => {
+      getNews();
+    }, 60000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
-
-  return (
-    <>
-      {data.map((item: number) => (
-        <Story key={item} storyId={item} />
-      ))}
-
-      
-    </>
- 
-  );
-}
+  return <News getNews={getNews} />;
+};

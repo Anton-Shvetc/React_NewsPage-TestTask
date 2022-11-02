@@ -6,39 +6,26 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { Home } from "./pages/Home";
-import { News } from "./pages/News";
+import { News} from "./pages/News";
+import { Header } from "./components/Header/Header";
+// import { Header } from "antd/lib/layout/layout";
 //import  StoryItem from "./components/StoryItem";
 // import {Comments} from "./components/Comments";
 
-function App() {
+export const App: React.FC = (): JSX.Element => {
   return (
-    <>
-      {/* <Router>
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-          <Route path="/news">
-            <News />
-          </Route>
-        </Switch>
-      </Router> */}
-
+    <div className="App">
       <Router>
+        <Header />
         <Switch>
           <Route path="/news/:id">
             <News />
           </Route>
-          {/* <Route path="/comments">
-            <Comments />
-          </Route> */}
           <Route path="/">
             <Home />
           </Route>
         </Switch>
       </Router>
-    </>
+    </div>
   );
-}
-
-export default App;
+};

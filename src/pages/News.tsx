@@ -1,7 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import StoryItem from "../components/StoryItem";
+import { NewsCard } from "../components/NewsDetailCard/NewsDetailCard";
 
-export function News() {
-  return <StoryItem/>;
-}
+export const News: React.FC = (): JSX.Element => {
+  return <NewsCard />;
+};
